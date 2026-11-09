@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#082b2d"><title>Coach Phil – Trainer-Dashboard</title>
+<style>
+:root{--p:#082b2d;--p2:#0d383a;--card:#103638;--o:#f28b18;--w:#f7f7f4;--m:#b9c9c7;--line:#315456}
+*{box-sizing:border-box}body{margin:0;background:#031416;color:var(--w);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.app{max-width:520px;min-height:100vh;margin:auto;padding:12px 16px 100px;background:radial-gradient(ellipse at 80% 0%,#174447 0,transparent 34%),linear-gradient(160deg,#082b2d,#041719 75%)}
+header{display:flex;align-items:center;justify-content:space-between;padding:10px 2px 16px;border-bottom:1px solid var(--line)}
+.logo{font-weight:950;font-size:22px;font-style:italic;letter-spacing:-1px}.bolt{color:#ffd33d}.sub{font-size:9px;letter-spacing:2px;color:var(--m);margin-top:2px}
+h1{font-size:29px;line-height:1.08;margin:7px 0 8px;font-style:italic}h2{font-size:19px;margin:0 0 8px}p{color:var(--m);line-height:1.45;margin:0}
+.hero{padding:23px 0 15px}.eyebrow{color:var(--o);font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase}
+.card{background:linear-gradient(145deg,#123a3c,#0a2628);border:1px solid var(--line);border-radius:15px;padding:15px;margin:10px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.label{font-size:11px;color:var(--m);margin-bottom:7px}.value{font-size:16px;font-weight:800}.ico{color:var(--o);font-size:22px;margin-bottom:8px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.focus{display:flex;align-items:center;gap:13px}.focus .ico{font-size:29px;margin:0}
+.btn{width:100%;border:0;border-radius:12px;padding:15px;background:var(--o);color:#111818;font-weight:900;font-size:16px;margin-top:10px;cursor:pointer}
+.btn.alt{background:transparent;border:1px solid var(--o);color:var(--w)}button{cursor:pointer}
+.section{font-size:18px;font-weight:850;margin:22px 0 9px}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);display:flex;justify-content:space-around;background:#061719f5;border-top:1px solid var(--line);padding:10px 3px calc(10px + env(safe-area-inset-bottom));backdrop-filter:blur(12px)}
+nav button{border:0;background:none;color:var(--m);font-size:10px;display:grid;gap:4px;justify-items:center}nav b{font-size:21px;color:var(--o)}
+.page{display:none}.page.active{display:block}
+select,input{width:100%;background:#061b1d;color:white;border:1px solid var(--line);border-radius:9px;padding:12px;margin:7px 0 15px;font-size:15px}
+label{font-size:13px;font-weight:700}.small{font-size:12px;color:var(--m)}.tag{display:inline-block;border:1px solid var(--line);border-radius:20px;padding:5px 9px;color:var(--m);font-size:11px;margin:7px 4px 0 0}
+.exercise{display:flex;gap:12px;align-items:center}.ball{width:68px;height:68px;flex:none;border-radius:12px;background:linear-gradient(135deg,#315c32,#132d1b);display:grid;place-items:center;font-size:32px}
+.listitem{padding:12px 0;border-bottom:1px solid var(--line)}.listitem:last-child{border:0}
+.notice{font-size:11px;color:var(--m);line-height:1.4;margin-top:13px}
+</style></head><body><main class="app">
+<header><div><div class="logo">CP<span class="bolt">⚡</span> COACH PHIL</div><div class="sub">KINDERFUSSBALL</div></div><div style="font-size:22px">◉</div></header>
+
+<section id="home" class="page active">
+ <div class="hero"><div class="eyebrow">Dein Trainer-Dashboard</div><h1>Hallo, Trainer!</h1><p>Dein Überblick für die nächste Einheit und die Entwicklung deines Teams.</p></div>
+ <div class="grid">
+  <div class="card"><div class="ico">♟</div><div class="label">DEIN TEAM</div><div class="value" id="teamOut">U8 · Jahrgang 2018</div></div>
+  <div class="card"><div class="ico">▦</div><div class="label">TRAINING PRO WOCHE</div><div class="value" id="freqOut">2 × pro Woche</div></div>
+ </div>
+ <div class="card focus"><div class="ico">◎</div><div><div class="label">WOCHENSCHWERPUNKT</div><div class="value" id="focusOut">Dribbling & 1 gegen 1</div></div></div>
+ <div class="section">Dein nächstes Training</div>
+ <div class="card row"><div><div class="value" id="sessionOut">Technik & Ballkontrolle</div><div class="small" id="durationOut">60 Minuten · 3 Übungen · 1 Spielform</div><span class="tag">Beispiel-Einheit</span></div><div class="ico">⚽</div></div>
+ <button class="btn" onclick="openPage('planner')">Trainingsplan erstellen　→</button>
+ <button class="btn alt" onclick="openPage('settings')">Mein Team einstellen</button>
+ <div class="section">Schnellzugriff</div><div class="grid">
+  <div class="card" onclick="openPage('exercises')"><div class="ico">⚽</div><b>Übungen</b><p class="small">Übungen entdecken</p></div>
+  <div class="card" onclick="openPage('knowledge')"><div class="ico">▤</div><b>Trainerwissen</b><p class="small">Wissen erweitern</p></div>
+ </div>
+ <p class="notice">Coach Phil – dein digitaler Begleiter im Kinderfußball. Dies ist eine lokale Demo: Deine Einstellungen bleiben auf diesem Gerät gespeichert.</p>
+</section>
+
+<section id="settings" class="page">
+ <div class="hero"><div class="eyebrow">Dein Trainerprofil</div><h1>Mein Team</h1><p>Stelle die Eckdaten deiner Mannschaft ein. Die Startseite und der Beispielplan passen sich daran an.</p></div>
+ <label for="age">Jahrgang</label><select id="age"><option>U6 · Jahrgang 2020</option><option>U7 · Jahrgang 2019</option><option selected>U8 · Jahrgang 2018</option><option>U9 · Jahrgang 2017</option><option>U10 · Jahrgang 2016</option><option>U11 · Jahrgang 2015</option><option>U12 · Jahrgang 2014</option><option>U13 · Jahrgang 2013</option></select>
+ <label for="freq">Training pro Woche</label><select id="freq"><option>1 × pro Woche</option><option selected>2 × pro Woche</option><option>3 × pro Woche</option><option>4 × pro Woche</option></select>
+ <label for="duration">Dauer je Einheit</label><select id="duration"><option>45 Minuten</option><option selected>60 Minuten</option><option>75 Minuten</option><option>90 Minuten</option></select>
+ <label for="level">Ausrichtung</label><select id="level"><option>Breitensport</option><option>Leistungsorientiert</option></select>
+ <label for="players">Anzahl Kinder (ungefähr)</label><select id="players"><option>8–10 Kinder</option><option selected>11–16 Kinder</option><option>17–20 Kinder</option><option>Mehr als 20 Kinder</option></select>
+ <button class="btn" onclick="saveSettings()">Einstellungen speichern</button>
+</section>
+
+<section id="planner" class="page">
+ <div class="hero"><div class="eyebrow">Trainingsplanung</div><h1>Dein Wochenplan</h1><p id="planMeta">U8 · 2 × pro Woche · 60 Minuten · Breitensport</p></div>
+ <div class="card"><div class="row"><b>TRAINING 1</b><span class="tag">Technik</span></div><div class="listitem"><b>1. Aktivierung mit Ball</b><p class="small">10 Min. · Freies Dribbling mit kleinen Aufgaben.</p></div><div class="listitem"><b>2. Dribbling & Ballkontrolle</b><p class="small">20 Min. · Hütchenparcours, Richtungswechsel und Finten.</p></div><div class="listitem"><b>3. Kleine Spielform</b><p class="small">30 Min. · Viele Ballaktionen und eigene Entscheidungen.</p></div></div>
+ <div class="card"><div class="row"><b>TRAINING 2</b><span class="tag">1 gegen 1</span></div><div class="listitem"><b>1. Fang- und Reaktionsspiel</b><p class="small">10 Min. · Spieler reagieren auf Signale.</p></div><div class="listitem"><b>2. 1 gegen 1 auf Minitore</b><p class="small">20 Min. · Mutig andribbeln und den Gegner überwinden.</p></div><div class="listitem"><b>3. Abschlussspiel</b><p class="small">30 Min. · Freies Spiel mit vielen Wiederholungen.</p></div></div>
+ <p class="notice">Wichtig: Das ist ein beispielhafter, statischer Plan – noch keine KI-Empfehlung und keine geprüfte individuelle Trainingssteuerung.</p>
+</section>
+
+<section id="exercises" class="page">
+ <div class="hero"><div class="eyebrow">Übungsbibliothek</div><h1>Übungen</h1><p>Einfach erklärt und direkt auf dem Platz umsetzbar.</p></div>
+ <div class="card"><div class="exercise"><div class="ball">⚽</div><div><b>Dribbel-Parcours</b><p class="small">15 Minuten · 8–16 Kinder · ab U7</p></div></div><div class="listitem"><b>Ziel</b><p>Ballkontrolle, Dribbling und Richtungswechsel.</p></div><div class="listitem"><b>Ablauf</b><p>Die Kinder dribbeln nacheinander durch einen Hütchenparcours. Variiere Tempo, Fuß und Finten. Am Ende folgt ein Abschluss auf ein Minitor.</p></div><div class="listitem"><b>Variation</b><p>Als kleinen Wettbewerb durchführen oder eine bestimmte Finte vorgeben.</p></div></div>
+</section>
+
+<section id="knowledge" class="page">
+ <div class="hero"><div class="eyebrow">Wissen für Kindertrainer</div><h1>Trainerwissen</h1><p>Praxisnahe Grundlagen für einen guten Kinderfußball.</p></div>
+ <div class="card"><b>Pädagogik & Entwicklung</b><p class="small">Kinder altersgerecht begleiten, motivieren und fördern.</p></div>
+ <div class="card"><b>Ernährung & Trinken</b><p class="small">Allgemeine, kindgerechte Grundlagen für den Trainingsalltag.</p></div>
+ <div class="card"><b>Regeneration</b><p class="small">Pausen, Schlaf und Belastung im Blick behalten.</p></div>
+ <div class="card"><b>Team & Mentalität</b><p class="small">Kommunikation, Freude und ein positives Lernklima.</p></div>
+</section>
+</main>
+<nav><button onclick="openPage('home')"><b>⌂</b>Start</button><button onclick="openPage('planner')"><b>▦</b>Training</button><button onclick="openPage('exercises')"><b>⚽</b>Übungen</button><button onclick="openPage('knowledge')"><b>▤</b>Wissen</button><button onclick="openPage('settings')"><b>⋯</b>Mehr</button></nav>
+<script>
+const ids=['age','freq','duration','level','players'];
+function openPage(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function apply(){let v=Object.fromEntries(ids.map(id=>[id,document.getElementById(id).value]));let a=v.age.split(' · ');document.getElementById('teamOut').textContent=a[0]+' · '+a[1];document.getElementById('freqOut').textContent=v.freq;document.getElementById('durationOut').textContent=v.duration+' · 3 Übungen · 1 Spielform';document.getElementById('planMeta').textContent=a[0]+' · '+v.freq+' · '+v.duration+' · '+v.level;document.getElementById('sessionOut').textContent=v.level==='Leistungsorientiert'?'Technik & Entscheidungsverhalten':'Technik & Ballkontrolle';document.getElementById('focusOut').textContent=v.level==='Leistungsorientiert'?'Dribbling, 1 gegen 1 & Entscheidung':'Dribbling & 1 gegen 1'}
+function saveSettings(){apply();localStorage.setItem('coachphil-settings',JSON.stringify(Object.fromEntries(ids.map(id=>[id,document.getElementById(id).value]))));openPage('home')}
+(function(){let s=localStorage.getItem('coachphil-settings');if(s){let v=JSON.parse(s);ids.forEach(id=>{if(v[id])document.getElementById(id).value=v[id]})}apply()})();
+</script></body></html>
